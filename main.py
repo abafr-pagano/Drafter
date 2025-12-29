@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from prompt_parser import PromptParser
 from llm_wrapper import LLM_Wrapper
 from request_parser import RequestParser
+import time
+
 import uvicorn
 
 app = FastAPI()
@@ -26,9 +28,16 @@ llm = LLM_Wrapper()
 @app.post("/ask")
 async def chat(body: RequestParser):
     try:
+        print(f"📨 Richiesta ricevuta: {body.prompt.strip()[:10]}...")
         prompt_data = body.prompt.strip()
         prompt = parser.get_prompt(prompt_data)
+        print(f"🤖 Prompt generato. Inoltro a LLM")
+        start = time.perf_counter()
+
         response_text = await llm.request(prompt)
+        elapsed = time.perf_counter() - start
+        print(f"🤖 tempo llm {elapsed:.2f} secondi.")
+
         return {"response": response_text}
     except Exception as e:
         print(f"💥 Errore critico nel server: {e}")

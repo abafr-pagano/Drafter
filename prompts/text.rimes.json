@@ -1,6 +1,6 @@
 {
   "model": "qwen2.5:14b",
-  "temperature": 0.1,
-  "context_window": 2048,
+  "temperature": 0.8,
+  "context_window": 2248,
   "stream": false
 }

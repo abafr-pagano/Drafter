@@ -23,3 +23,17 @@ class LLMPrompt:
             },
             {"role": "user", "content": self.user_prompt},
         ]
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return (
+            f"LLMPrompt("
+            f"name='{self.name}', "
+            f"model='{self.model}', "
+            f"temperature={self.temperature}, "
+            f"context_window={self.context_window}, "
+            f"stream={self.stream}"
+            f")"
+        )

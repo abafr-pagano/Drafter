@@ -106,6 +106,7 @@ class PromptParser:
             user_prompt_text = request_text.strip()
 
         selected_prompt = self.prompts.get(tag_found)
+        print(f"🧠 [Parser] Prompt selezionato: {selected_prompt}")
         assert selected_prompt is not None, f"⚠️ [Parser] Tag non trovato: {tag_found}"
 
         retVal = selected_prompt.copy()
